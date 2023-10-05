@@ -33,7 +33,21 @@ app.use(express.static('main'));
 
 app.get('/',function(req,res){
     res.send(xml_result.bookstore.book);
+
+    xml_result.bookstore.book.forEach(i => {
+        const b_title = i.title;
+        const b_author = i.author;
+        const b_year = i.publication_year;
+        const b_price = i.price;
+
+        const sqlInsert = "INSERT INTO `bookstore` (`title`, `author`, `publication_year`, `price`) VALUES (?,?,?,?);";
+        db.query(sqlInsert,[b_title,b_author,b_year,b_price],(err,result)=>{
+        console.log(err);
+    })
+    });
 })
+
+
 
 app.listen(3001 , ()=>{ 
     console.log("server running"); 

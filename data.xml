@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bookstore>
   <book>
-    <title>The Great Adventure</title>
-    <author>John Smith</author>
+    <title>Game Of Thrones</title>
+    <author>George R R Martin</author>
+    <publication_year>1980</publication_year>
+    <price>19.99</price>
+  </book>
+
+  <book>
+    <title>Lord Of The Flies</title>
+    <author>J R R Tolkien</author>
+    <publication_year>1914</publication_year>
+    <price>19.99</price>
+  </book>
+
+  <book>
+    <title>Harry Potter</title>
+    <author>Mary Shelly</author>
     <publication_year>2020</publication_year>
     <price>19.99</price>
   </book>
-  <book>
-    <title>A Mystery Unveiled</title>
-    <author>Jane Doe</author>
-    <publication_year>2018</publication_year>
-    <price>15.95</price>
-  </book>
-  <book>
-    <title>Science Explained</title>
-    <author>Michael Johnson</author>
-    <publication_year>2022</publication_year>
-    <price>24.50</price>
-  </book>
+  
 </bookstore>
