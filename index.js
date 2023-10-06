@@ -27,11 +27,12 @@ parser.parseString(xml_string, function(error, result) {
 
 //Api
 let express = require('express');
+const { error } = require('console');
 let app = express();
 
 app.use(express.static('main'));
 
-app.get('/',function(req,res){
+app.get('/api/update',function(req,res){
     res.send(xml_result.bookstore.book);
 
     xml_result.bookstore.book.forEach(i => {
@@ -47,6 +48,33 @@ app.get('/',function(req,res){
     });
 })
 
+app.get('/api/generate',function(req,res){
+
+    const sqlInsert = "SELECT * FROM bookstore";
+    db.query(sqlInsert,(err,result)=>{
+        res.send(result);
+
+        let write_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<bookstore>\n';
+
+        result.forEach(i =>{
+            write_xml = write_xml + '<book> \n' +
+            '<title>' + i.title + '</title>\n' +
+            '<author>' + i.author + '</author>\n' +
+            '<publication_year>' + i.publication_year + '</publication_year>\n' +
+            '<price>' + i.price + '</price>\n'
+            + '</book> \n';
+        })
+
+        write_xml = write_xml + '</bookstore>'
+
+        fs.writeFile('get_data.xml',write_xml,error=>{
+            if(err){
+                console.log(error)
+            }
+        })
+    })
+
+})
 
 
 app.listen(3001 , ()=>{ 
